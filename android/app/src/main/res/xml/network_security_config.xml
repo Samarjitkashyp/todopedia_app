@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Network security policy for TodoPedia.
+
+  By default ALL cleartext (plain HTTP) traffic is blocked, which forces the app
+  to use HTTPS in production and prevents man-in-the-middle interception of
+  tokens and personal data.
+
+  Cleartext is permitted ONLY for the local development hosts below so the app
+  can still talk to a locally-running backend during debugging. Before shipping
+  a release, point ApiEndpoints.baseUrl at an https:// URL.
+-->
+<network-security-config>
+    <!-- Global default: no cleartext, only trusted system CAs. -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Local development machines / emulators only. -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">127.0.0.1</domain>
+        <!-- Android emulator loopback to host machine -->
+        <domain includeSubdomains="true">10.0.2.2</domain>
+        <!-- Local LAN IP used for physical-device debugging -->
+        <domain includeSubdomains="true">192.168.0.237</domain>
+    </domain-config>
+</network-security-config>
