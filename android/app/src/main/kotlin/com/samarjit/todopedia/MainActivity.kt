@@ -1,4 +1,4 @@
-package com.samarjit.todo_pedia
+package com.samarjit.todopedia
 
 import io.flutter.embedding.android.FlutterActivity
 
